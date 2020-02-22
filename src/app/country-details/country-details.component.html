@@ -1,2 +1,10 @@
 <a [routerLink]="['/']">Home</a>
-<h1>{{countryName$ | async}}</h1>
+<h1>{{country.name}}</h1>
+
+<cnt-gcmap-static [capitalLatLng]="country.latlng | coordinatesToString" [countryName]="country.name"></cnt-gcmap-static>
+
+<div *ngFor="let border of (borders$ | async)">
+    <a [routerLink]="['/country/' + border.alpha3Code]">
+        <p>{{border.name}}</p>
+    </a>
+</div>

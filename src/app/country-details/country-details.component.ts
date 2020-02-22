@@ -1,24 +1,43 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
-import { CountriesApiService } from 'src/services/countries-api.service';
+import { Observable, Subject } from 'rxjs';
+import { tap, switchMap, takeUntil } from 'rxjs/operators';
+
+import { Country, Borders } from 'src/interfaces/countries.interface';
+import { CountryDetailsService } from 'src/services/country-details.service';
 
 @Component({
-  selector: 'app-country-details',
+  selector: 'cnt-country-details',
   templateUrl: './country-details.component.html',
   styleUrls: ['./country-details.component.scss']
 })
-export class CountryDetailsComponent implements OnInit {
+export class CountryDetailsComponent implements OnInit, OnDestroy {
 
-  countryName$: Observable<string>
+  borders$: Observable<Borders[]>
+  country: Country;
 
-  constructor(private _route: ActivatedRoute, private countriesApi: CountriesApiService) { }
+  private _unsubscribe = new Subject<void>();
+
+  constructor(private route: ActivatedRoute, private countryDetails: CountryDetailsService) { }
 
   ngOnInit(): void {
-    this.countryName$ = this._route.params.pipe(map(params => decodeURI(params.countryName)))
-    // this.countriesApi.getCountryByCode({param: '?codes=col;no;ee'}).subscribe(c => console.log('PROVIAMO ', c))
-    // this.countriesApi.getCountryByName({param: '/Italy', filters: ['name']}).subscribe(c => console.log('ITALIA', c))
+
+    this.route.data
+      .pipe(
+        tap(({country}) => this.country = country),
+        switchMap(({country}) => this.countryDetails.getBorders(country.borders)),
+        takeUntil(this._unsubscribe)
+      )
+      .subscribe(); 
+
+    // this.country = this.route.snapshot.data.country as Country;
+    this.borders$ = this.countryDetails.borders.pipe(takeUntil(this._unsubscribe));    
+
+  }
+
+  ngOnDestroy(): void {
+    this._unsubscribe.next();
+    this._unsubscribe.complete();
   }
 
 }

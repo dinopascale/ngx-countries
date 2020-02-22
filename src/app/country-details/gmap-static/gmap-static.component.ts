@@ -2,7 +2,7 @@ import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core
 import { GMapStatisService } from './gmap-static.service';
 
 @Component({
-  selector: 'cnt-gmap-static',
+  selector: 'cnt-gcmap-static',
   template: `<img class="gmaps-image" *ngIf="capitalLatLng && countryName" [src]="mapUrl">`,
   styles: [],
   changeDetection: ChangeDetectionStrategy.OnPush
