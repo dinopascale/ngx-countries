@@ -18,7 +18,7 @@ export class CountryRowComponent {
   @Input() country: Partial<Country>
 
   get link (): string {
-    return '/country/' + encodeURI(this.country.name);
+    return '/country/' + encodeURI(this.country.alpha3Code);
   }
 
 }

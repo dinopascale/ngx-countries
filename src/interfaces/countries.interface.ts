@@ -54,3 +54,5 @@ export interface Country {
     regionalBlocs: RegionalBloc[];
     cioc: string;
 }
+
+export type Borders = Pick<Country, 'name' | 'alpha3Code'>

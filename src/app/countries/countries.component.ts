@@ -12,7 +12,7 @@ import { shareReplay } from 'rxjs/operators';
 })
 export class CountriesComponent implements OnInit, OnDestroy {
 
-  countries$: Observable<Country[]>
+  countries$: Observable<Partial<Country>[]>
   error$: Observable<boolean>
   loading$: Observable<boolean>
   private sub: Subscription
