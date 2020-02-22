@@ -3,7 +3,7 @@ import { GMapStatisService } from './gmap-static.service';
 
 @Component({
   selector: 'cnt-gmap-static',
-  template: `<img class="gmaps-image" [src]="mapUrl">`,
+  template: `<img class="gmaps-image" *ngIf="capitalLatLng && countryName" [src]="mapUrl">`,
   styles: [],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
