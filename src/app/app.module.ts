@@ -4,17 +4,17 @@ import { HttpClientModule } from '@angular/common/http'
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { GMapStaticModule } from './country-details/gmap-static/gmap-static.module';
+import { CountriesComponent } from './countries/countries/countries.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    CountriesComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    GMapStaticModule
   ],
   providers: [],
   bootstrap: [AppComponent]
