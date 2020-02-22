@@ -1,0 +1,8 @@
+{
+    "build": {
+      "env": {
+        "MAPS_API_KEY": "@maps_api_key"
+      }
+    }
+  }
+  
