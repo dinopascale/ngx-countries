@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {BehaviorSubject, Observable, throwError} from 'rxjs'
+import {BehaviorSubject, Observable, throwError, Subscription} from 'rxjs'
 import {Country} from 'src/interfaces/countries.interface';
 import {CountriesApiService} from './countries-api.service';
 import { catchError, switchMap } from 'rxjs/operators';
@@ -23,14 +23,14 @@ export class CountriesService {
 
   get countriesLoading(): Observable<boolean> { return this.countriesLoading$.asObservable() }
 
-  fetchCountries<D extends keyof Country>(filters?: D[]): void {
+  fetchCountries<D extends keyof Country>(filters?: D[]): Subscription {
 
     if (this.isChached) { return; }
 
     this.countriesLoading$.next(true);
     this.countriesFailed$.next(false);
 
-    this.countryApi.getAllCountries({filters})
+    return this.countryApi.getAllCountries({filters})
       .pipe(
       )
       .subscribe(
