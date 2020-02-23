@@ -1,17 +1,42 @@
+@import '../../../styles/colors';
+
 .country-row {
     display: flex;
     align-items: center;
-    height: 75px;
     justify-content: space-between;
-    padding: 0 .5em;
+    padding: 12px 0;
+    border-bottom: 1px solid #edeef0;
+    position: relative;
+    cursor: pointer;
+    background: #fff;
+    transition: background .2s ease-in-out;
 
-    .flag {
+    &:active {
+      background: $grey-light;
+      outline: none;
+    }
+
+    &:focus {
+      background: $grey-light;
+      outline: none;
+    }
+
+    .cell {
+
+      &.flag { flex: 0 0 50px; }
+      &.name { flex: 1 0 60%; }
+      &.population { flex: 0 0 20%; text-align: right; }
+
+      .flag {
         width: 30px;
+        max-width: 30px;
         height: 30px;
         border-radius: 50%;
-        border: 2px solid #ccc;
+        border: 2px solid;
         transform: translateZ(1);
         background-position: center;
-        background-size: contain;
-    }  
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+    }
 }

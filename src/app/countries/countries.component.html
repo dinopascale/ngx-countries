@@ -1,5 +1,21 @@
-<div>
-    
+<div class="container">
+
+  <h1 class="region primary-fg">Europe</h1>
+
+  <ng-container *ngIf="(loading$ | async)">
+    Loading...
+  </ng-container>
+
+  <ng-container *ngIf="(error$ | async) && !(loading$ | async)">
+    Error
+  </ng-container>
+
+  <ng-container *ngIf="!(loading$ | async) && !(error$ | async)">
+    <cnt-countries-table [countries]="countries$ | async"></cnt-countries-table>
+  </ng-container>
+
+
+  <cnt-mobile-toolbar [actions]="toolbarActions"></cnt-mobile-toolbar>
 </div>
 
 

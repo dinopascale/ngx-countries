@@ -9,14 +9,14 @@ import { Sorting, SortCriteria } from 'src/interfaces/countries.interface';
   selector: 'cnt-countries-table-header',
   template: `
     <div class="country-table-header" *ngIf="sortingCriteria$ | async as sort">
-      <div class="header-cell"></div>
-      <div class="header-cell">
-        <img [src]="sort | sortIcon: 'name'" (click)="handleSortBy('name')">
-        Name
+      <div class="header-cell flag"></div>
+      <div class="header-cell name">
+        <img class="icon-sort hidden-mobile" [src]="sort | sortIcon: 'name'" (click)="handleSortBy('name')">
+        <span class="grey-dark-fg">Name</span>
       </div>
-      <div class="header-cell">
-        <img [src]="sort | sortIcon: 'population'" (click)="handleSortBy('population')">
-        Population
+      <div class="header-cell population">
+        <img class="icon-sort hidden-mobile" [src]="sort | sortIcon: 'population'" (click)="handleSortBy('population')">
+        <span class="grey-dark-fg">Population</span>
       </div>
     </div>
   `,
@@ -30,7 +30,7 @@ export class CountriesTableHeaderComponent implements OnInit {
   constructor(private countriesService: CountriesService) { }
 
   handleSortBy(type: Sorting): void {
-    this.countriesService.setSort(type)    
+    this.countriesService.setSort(type)
   }
 
   ngOnInit(): void {

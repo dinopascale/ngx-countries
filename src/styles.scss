@@ -1,4 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap');
+@import './app/styles/colors';
+@import './app/styles/utilities';
+
+* {
+  font-family: 'Poppins', ;
+  box-sizing: border-box;
+}
+
 html, body {
     margin: 0;
 }
@@ -6,4 +15,16 @@ html, body {
 a {
     text-decoration: none;
     color: inherit;
+    outline: none;
+
+    &:focus {
+      outline: none;
+      border: none;
+    }
+}
+
+.hidden-mobile {
+  @media (max-width: 486px) {
+    display: none;
+  }
 }

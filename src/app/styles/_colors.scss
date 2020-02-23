@@ -1,0 +1,19 @@
+$solvians: #00A0D7;
+$grey-light: #edeef0;
+$grey-dark: #7e7e7e;
+
+.primary-fg {
+  color: $solvians;
+}
+
+.grey-light-fg {
+  color: $grey-light;
+}
+
+.border-grey-light {
+  border-color: $grey-light;
+}
+
+.grey-dark-fg {
+  color: $grey-dark;
+}

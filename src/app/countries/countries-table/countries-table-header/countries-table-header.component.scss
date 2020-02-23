@@ -1,11 +1,14 @@
 .country-table-header {
     display: flex;
     align-items: center;
-    height: 35px;
+    padding: 8px 0;
     justify-content: space-between;
-    padding: 0 .5em;
-    
+
     .header-cell {
         font-weight: 700;
+
+        &.flag { flex: 0 0 50px; }
+        &.name { flex: 1 0 40%; }
+        &.population { flex: 0 0 20%; }
     }
 }

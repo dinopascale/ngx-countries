@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import {BehaviorSubject, Observable, throwError, Subscription} from 'rxjs'
+import { BehaviorSubject, Observable, throwError, Subscription } from 'rxjs'
 import { Country, SortCriteria, Sorting, Orders } from 'src/interfaces/countries.interface';
-import {CountriesApiService} from './countries-api.service';
+import { CountriesApiService } from './countries-api.service';
 import { shareReplay } from 'rxjs/operators';
 
 @Injectable({
@@ -14,9 +14,9 @@ export class CountriesService {
   private countries$: BehaviorSubject<Partial<Country>[]> = new BehaviorSubject<Country[]>([]);
   private countriesFailed$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   private countriesLoading$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
-  private sortingCriteria$: BehaviorSubject<SortCriteria> = new BehaviorSubject<SortCriteria>({type: 'none', order: 'NONE'});
+  private sortingCriteria$: BehaviorSubject<SortCriteria> = new BehaviorSubject<SortCriteria>({ type: 'none', order: 'NONE' });
 
-  constructor(private countryApi: CountriesApiService) {}
+  constructor(private countryApi: CountriesApiService) { }
 
   get countries(): Observable<Partial<Country>[]> { return this.countries$.asObservable() }
 
@@ -33,7 +33,7 @@ export class CountriesService {
     this.countriesLoading$.next(true);
     this.countriesFailed$.next(false);
 
-    return this.countryApi.getAllCountries({filters})
+    return this.countryApi.getAllCountries({ filters })
       .pipe(
       )
       .subscribe(
@@ -50,17 +50,18 @@ export class CountriesService {
       )
   }
 
-  setSort(sortType: Sorting): void {
+  setSort(sortType: Sorting, orderType?: Orders): void {
     let newOrder: Orders;
 
-    const {order: oldOrder, type: oldType} = this.sortingCriteria$.getValue();
+    const { order: oldOrder, type: oldType } = this.sortingCriteria$.getValue();
 
-    if (sortType !== oldType) { newOrder = 'ASC'; }
-    else if (oldOrder === 'ASC') { newOrder = 'DESC'}
-    else if (oldOrder === 'DESC') { newOrder = 'NONE'}
-    else { newOrder = 'ASC' }
+    if (orderType) { newOrder = orderType; }
+    else if (sortType !== oldType) { newOrder = 'ASC'; }
+    else if (oldOrder === 'ASC') { newOrder = 'DESC'; }
+    else if (oldOrder === 'DESC') { newOrder = 'NONE'; }
+    else { newOrder = 'ASC'; }
 
 
-    this.sortingCriteria$.next({type: sortType !== oldType ? sortType : oldType, order: newOrder});
+    this.sortingCriteria$.next({ type: sortType !== oldType ? sortType : oldType, order: newOrder });
   }
 }
