@@ -55,4 +55,7 @@ export interface Country {
     cioc: string;
 }
 
-export type Borders = Pick<Country, 'name' | 'alpha3Code'>
+export type Borders = Pick<Country, 'name' | 'alpha3Code'>;
+export type Sorting = 'name' | 'population';
+export type Orders = 'ASC' | 'DESC' | 'NONE';
+export type SortCriteria = {type: Sorting | 'none', order: Orders}

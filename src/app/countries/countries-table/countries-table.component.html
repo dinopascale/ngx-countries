@@ -1,3 +1,4 @@
+<cnt-countries-table-header></cnt-countries-table-header>
 <cdk-virtual-scroll-viewport class="countries-table" itemSize="75">
-    <cnt-country-row *cdkVirtualFor="let country of countries;trackBy: trackBy" [country]="country"></cnt-country-row>
+    <cnt-country-row *cdkVirtualFor="let country of countries | filterCountries: {prop: 'region', value: 'Europe'} | sortCountries: (sortingCriteria$ | async) ;trackBy: trackBy" [country]="country"></cnt-country-row>
 </cdk-virtual-scroll-viewport>

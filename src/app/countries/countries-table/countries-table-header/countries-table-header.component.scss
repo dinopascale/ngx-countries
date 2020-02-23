@@ -1,0 +1,11 @@
+.country-table-header {
+    display: flex;
+    align-items: center;
+    height: 35px;
+    justify-content: space-between;
+    padding: 0 .5em;
+    
+    .header-cell {
+        font-weight: 700;
+    }
+}

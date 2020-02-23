@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
 import {BehaviorSubject, Observable, throwError, Subscription} from 'rxjs'
-import {Country} from 'src/interfaces/countries.interface';
+import { Country, SortCriteria, Sorting, Orders } from 'src/interfaces/countries.interface';
 import {CountriesApiService} from './countries-api.service';
-import { catchError, switchMap } from 'rxjs/operators';
-
+import { shareReplay } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +14,7 @@ export class CountriesService {
   private countries$: BehaviorSubject<Partial<Country>[]> = new BehaviorSubject<Country[]>([]);
   private countriesFailed$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   private countriesLoading$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  private sortingCriteria$: BehaviorSubject<SortCriteria> = new BehaviorSubject<SortCriteria>({type: 'none', order: 'NONE'});
 
   constructor(private countryApi: CountriesApiService) {}
 
@@ -23,6 +23,8 @@ export class CountriesService {
   get countriesFailed(): Observable<boolean> { return this.countriesFailed$.asObservable() }
 
   get countriesLoading(): Observable<boolean> { return this.countriesLoading$.asObservable() }
+
+  get sortingCriteria(): Observable<SortCriteria> { return this.sortingCriteria$.asObservable().pipe(shareReplay(1)) }
 
   fetchCountries<D extends keyof Country>(filters?: D[]): Subscription {
 
@@ -46,5 +48,19 @@ export class CountriesService {
           this.countriesFailed$.next(true)
         }
       )
+  }
+
+  setSort(sortType: Sorting): void {
+    let newOrder: Orders;
+
+    const {order: oldOrder, type: oldType} = this.sortingCriteria$.getValue();
+
+    if (sortType !== oldType) { newOrder = 'ASC'; }
+    else if (oldOrder === 'ASC') { newOrder = 'DESC'}
+    else if (oldOrder === 'DESC') { newOrder = 'NONE'}
+    else { newOrder = 'ASC' }
+
+
+    this.sortingCriteria$.next({type: sortType !== oldType ? sortType : oldType, order: newOrder});
   }
 }

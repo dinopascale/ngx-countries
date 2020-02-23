@@ -24,7 +24,7 @@ export class CountriesComponent implements OnInit, OnDestroy {
     this.loading$ = this.countriesService.countriesLoading.pipe(shareReplay(1));
     this.countries$ = this.countriesService.countries;
 
-    this.sub = this.countriesService.fetchCountries(['name', 'capital', 'population', 'flag', 'alpha3Code']);
+    this.sub = this.countriesService.fetchCountries(['name', 'capital', 'population', 'flag', 'alpha3Code', 'region']);
   }
 
   ngOnDestroy(): void {
