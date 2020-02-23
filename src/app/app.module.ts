@@ -5,31 +5,18 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
 import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
-import { CountriesComponent } from './countries/countries.component';
-import { CountriesTableComponent } from './countries/countries-table/countries-table.component';
-import { CountryRowComponent } from './countries/countries-table/country-row/country-row.component';
-import { CountriesTableHeaderComponent } from './countries/countries-table/countries-table-header/countries-table-header.component';
-
-import { SortIconPipe } from './pipes/sort-icon.pipe';
-import { SortCountriesPipe } from './pipes/sort-countries.pipe';
-import { FilterCountriesPipe } from './pipes/filter-countries.pipe';
+import { CountriesModule } from './countries/countries.module';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    CountriesComponent,
-    CountriesTableComponent,
-    CountryRowComponent,
-    CountriesTableHeaderComponent,
-    SortIconPipe,
-    SortCountriesPipe,
-    FilterCountriesPipe
+    AppComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    ScrollingModule
+    ScrollingModule,
+    CountriesModule
   ],
   providers: [],
   bootstrap: [AppComponent]
