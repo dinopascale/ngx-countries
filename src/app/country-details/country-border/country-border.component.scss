@@ -1,0 +1,23 @@
+.border-card {
+  border: 1px solid #edeef0;
+  height: 130px;
+  width: 130px;
+  position: relative;
+
+  .flag {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    top: 0;
+    height: 100%;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    filter: saturate(.6);
+  }
+}
+
+.name {
+  margin: 0.1em;
+  font-weight: normal;
+}

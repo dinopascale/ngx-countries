@@ -4,18 +4,23 @@ import { GMapStatisService } from './gmap-static.service';
 @Component({
   selector: 'cnt-gcmap-static',
   template: `<img class="gmaps-image" *ngIf="capitalLatLng && countryName" [src]="mapUrl">`,
-  styles: [],
+  styles: [`
+    .gmaps-image {
+      width: 100%;
+      border-radius: 8px;
+    }
+  `],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class GmapStaticComponent implements OnInit {
 
   @Input() capitalLatLng: string;
-  @Input() countryName: string; 
+  @Input() countryName: string;
 
-  get mapUrl() { return this._gMapStatic.getMapUrl(this.capitalLatLng, this.countryName)}
+  get mapUrl() { return this._gMapStatic.getMapUrl(this.capitalLatLng, this.countryName) }
 
   constructor(private _gMapStatic: GMapStatisService) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
 }

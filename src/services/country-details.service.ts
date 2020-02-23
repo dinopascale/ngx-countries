@@ -13,10 +13,10 @@ export class CountryDetailsService implements Resolve<Country> {
 
   private borders$: BehaviorSubject<Borders[]> = new BehaviorSubject<Borders[]>([]);
 
-  constructor(private countriesApi: CountriesApiService) {}
+  constructor(private countriesApi: CountriesApiService) { }
 
-  resolve (route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Country> {
-    return this.countriesApi.getCountryByCode({param: `/${route.params.countryCode}`}) as Observable<Country>;
+  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Country> {
+    return this.countriesApi.getCountryByCode({ param: `/${route.params.countryCode}` }) as Observable<Country>;
   }
 
   get borders(): Observable<Borders[]> {
@@ -24,11 +24,11 @@ export class CountryDetailsService implements Resolve<Country> {
   }
 
   getBorders(borders: string[]): Observable<Borders[]> {
-    return this.countriesApi.getCountryByCode({param: `?codes=${borders.join(';')}`})
+    return this.countriesApi.getCountryByCode({ param: `?codes=${borders.join(';')}` })
       .pipe(
-        map((countries: Country[]) => countries.map(country => ({name: country.name, alpha3Code: country.alpha3Code}))),
-        tap(borders => this.borders$.next(borders))
+        map((countries: Country[]) => countries.map(country => ({ name: country.name, alpha3Code: country.alpha3Code, flag: country.flag }))),
+        tap(bs => this.borders$.next(bs))
       )
   }
-  
+
 }

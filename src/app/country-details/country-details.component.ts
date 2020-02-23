@@ -1,37 +1,72 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { GMapStatisService } from './gmap-static/gmap-static.service';
+import { Component, OnInit, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable, Subject } from 'rxjs';
 import { tap, switchMap, takeUntil } from 'rxjs/operators';
+import { OwlOptions } from 'ngx-owl-carousel-o';
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 
 import { Country, Borders } from 'src/interfaces/countries.interface';
+import { ToolbarAction } from 'src/interfaces/toolbar.interface';
 import { CountryDetailsService } from 'src/services/country-details.service';
+
 
 @Component({
   selector: 'cnt-country-details',
   templateUrl: './country-details.component.html',
-  styleUrls: ['./country-details.component.scss']
+  styleUrls: ['./country-details.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CountryDetailsComponent implements OnInit, OnDestroy {
 
-  borders$: Observable<Borders[]>
-  country: Country;
-
   private _unsubscribe = new Subject<void>();
 
-  constructor(private route: ActivatedRoute, private countryDetails: CountryDetailsService) { }
+
+  borders$: Observable<Borders[]>;
+  country: Country;
+  backIcon = faArrowLeft;
+
+  customOptions: OwlOptions = {
+    loop: false,
+    mouseDrag: true,
+    touchDrag: true,
+    pullDrag: true,
+    dots: true,
+    dotsEach: true,
+    nav: false,
+    stagePadding: 10,
+    responsive: {
+      0: {
+        items: 2
+      },
+      400: {
+        items: 2
+      },
+      740: {
+        items: 3
+      },
+      940: {
+        items: 4
+      }
+    },
+  };
+
+
+  get mapUrl(): string { console.log(this.gMapStatic.getMapUrl(this.country.latlng.join(','), this.country.name)); return this.gMapStatic.getMapUrl(this.country.latlng.join(','), this.country.name); }
+
+  constructor(private route: ActivatedRoute, private countryDetails: CountryDetailsService, private gMapStatic: GMapStatisService) { }
 
   ngOnInit(): void {
 
     this.route.data
       .pipe(
-        tap(({country}) => this.country = country),
-        switchMap(({country}) => this.countryDetails.getBorders(country.borders)),
+        tap(({ country }) => this.country = country),
+        switchMap(({ country }) => this.countryDetails.getBorders(country.borders)),
         takeUntil(this._unsubscribe)
       )
-      .subscribe(); 
+      .subscribe();
 
-    // this.country = this.route.snapshot.data.country as Country;
-    this.borders$ = this.countryDetails.borders.pipe(takeUntil(this._unsubscribe));    
+    this.borders$ = this.countryDetails.borders.pipe(takeUntil(this._unsubscribe));
 
   }
 

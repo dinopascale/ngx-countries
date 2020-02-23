@@ -1,10 +1,52 @@
-<a [routerLink]="['/']">Home</a>
-<h1>{{country.name}}</h1>
+<div class="map-container">
+  <div class="navbar">
+    <fa-icon [routerLink]="['/']" [icon]="backIcon"></fa-icon>
+  </div>
+  <div class="map" [ngStyle]="{backgroundImage: 'url(' + mapUrl + ')'}"></div>
+</div>
 
-<cnt-gcmap-static [capitalLatLng]="country.latlng | coordinatesToString" [countryName]="country.name"></cnt-gcmap-static>
+<div class="content">
 
-<div *ngFor="let border of (borders$ | async)">
+  <h1 class="country-name primary-fg">{{country.name}}</h1>
+
+  <div class="details-resume">
+    <cnt-country-detail [detailValue]="country.region" detailLabel="region">
+    </cnt-country-detail>
+
+    <cnt-country-detail [detailValue]="country.subregion" detailLabel="subregion">
+    </cnt-country-detail>
+
+    <cnt-country-detail [detailValue]="country.capital" detailLabel="capital">
+    </cnt-country-detail>
+
+    <cnt-country-detail [detailValue]="country.population | abbreviateNumber" detailLabel="population">
+    </cnt-country-detail>
+
+    <cnt-country-detail [detailValue]="(country.area | abbreviateNumber)" detailLabel="area (km²)">
+    </cnt-country-detail>
+
+    <cnt-country-detail [detailValue]="(country.area | abbreviateNumber)" detailLabel="currencies">
+    </cnt-country-detail>
+
+    <cnt-country-detail [detailValue]="(country.area | abbreviateNumber)" detailLabel="languages">
+    </cnt-country-detail>
+
+    <cnt-country-detail [detailValue]="(country.area | abbreviateNumber)" detailLabel="timezones">
+    </cnt-country-detail>
+
+  </div>
+
+  <h6 class="label primary-fg">BORDERS</h6>
+  <owl-carousel-o [options]="customOptions" *ngIf="(borders$ | async) as borders">
+    <ng-template carouselSlide *ngFor="let border of borders" [id]="border.alpha3Code">
+      <cnt-country-border [border]="border"></cnt-country-border>
+    </ng-template>
+
+  </owl-carousel-o>
+
+  <!--<div *ngFor="let border of (borders$ | async)">
     <a [routerLink]="['/country/' + border.alpha3Code]">
-        <p>{{border.name}}</p>
+      <p>{{border.name}}</p>
     </a>
+  </div>-->
 </div>

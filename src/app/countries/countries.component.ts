@@ -1,10 +1,10 @@
-import { ToolbarAction } from 'src/interfaces/toolbar.interface';
 import { Component, OnInit, ChangeDetectionStrategy, Optional, OnDestroy } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 import { Country } from 'src/interfaces/countries.interface';
 import { CountriesService } from 'src/services/countries.service';
 import { shareReplay } from 'rxjs/operators';
 
+import { ToolbarAction } from 'src/interfaces/toolbar.interface';
 import { faHome, faFilter, faSort } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
