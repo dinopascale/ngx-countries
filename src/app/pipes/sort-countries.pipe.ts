@@ -6,7 +6,7 @@ import { SortCriteria, Country } from 'src/interfaces/countries.interface';
 })
 export class SortCountriesPipe implements PipeTransform {
 
-  transform(countries: Country[], sortCriteria: SortCriteria): Country[] {
+  transform(countries: Partial<Country>[], sortCriteria: SortCriteria): Partial<Country>[] {
 
     const {type, order} = sortCriteria;
 
