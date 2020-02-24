@@ -33,17 +33,23 @@
 
 .content {
   position: relative;
-  padding: .8em 1.2em 60px 1.2em;
+  padding: 1.5em 1.2em 60px 1.2em;
+
+  .country-native-name {
+    text-decoration: uppercase;
+    font-size: 10px;
+  }
+
   .country-name {
     flex: 1 0 50%;
-    margin: .2em 0 .8em 0;
+    margin: 2px 0 .8em 0;
   }
 
   .details-resume {
     display: flex;
     justify-content: space-around;
     align-content: center;
-    align-items: center;
+    align-items: baseline;
     flex-flow: row wrap;
     & > * {
       flex: 1 0 48%;

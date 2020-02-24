@@ -2,12 +2,11 @@ import { GMapStatisService } from './gmap-static/gmap-static.service';
 import { Component, OnInit, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable, Subject } from 'rxjs';
-import { tap, switchMap, takeUntil } from 'rxjs/operators';
+import { tap, switchMap, takeUntil, filter } from 'rxjs/operators';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 
 import { Country, Borders } from 'src/interfaces/countries.interface';
-import { ToolbarAction } from 'src/interfaces/toolbar.interface';
 import { CountryDetailsService } from 'src/services/country-details.service';
 
 
@@ -52,7 +51,7 @@ export class CountryDetailsComponent implements OnInit, OnDestroy {
   };
 
 
-  get mapUrl(): string { console.log(this.gMapStatic.getMapUrl(this.country.latlng.join(','), this.country.name)); return this.gMapStatic.getMapUrl(this.country.latlng.join(','), this.country.name); }
+  get mapUrl(): string { return this.gMapStatic.getMapUrl(this.country.latlng.join(','), this.country.name); }
 
   constructor(private route: ActivatedRoute, private countryDetails: CountryDetailsService, private gMapStatic: GMapStatisService) { }
 
@@ -66,7 +65,7 @@ export class CountryDetailsComponent implements OnInit, OnDestroy {
       )
       .subscribe();
 
-    this.borders$ = this.countryDetails.borders.pipe(takeUntil(this._unsubscribe));
+    this.borders$ = this.countryDetails.borders.pipe(takeUntil(this._unsubscribe)).pipe(tap(c => console.log(c)));
 
   }
 

@@ -7,12 +7,14 @@ import { SortIconPipe } from './pipes/sort-icon.pipe';
 import { SortCountriesPipe } from './pipes/sort-countries.pipe';
 import { FilterCountriesPipe } from './pipes/filter-countries.pipe';
 import { AbbreviateNumberPipe } from './pipes/abbreviate-number.pipe';
+import { MapToStringPipe } from './pipes/map-to-string.pipe';
 
 const pipes = [
   SortIconPipe,
   SortCountriesPipe,
   FilterCountriesPipe,
-  AbbreviateNumberPipe
+  AbbreviateNumberPipe,
+  MapToStringPipe
 ];
 
 @NgModule({
