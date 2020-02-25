@@ -2,7 +2,11 @@ import { Subscription } from 'rxjs';
 import { CountriesService } from 'src/app/services/countries.service';
 import { Component, OnInit, OnDestroy, EventEmitter, Output } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder } from '@angular/forms';
+
+import { faGlobe, faGlobeAfrica, faGlobeAmericas, faGlobeAsia, faGlobeEurope, faKiwiBird } from '@fortawesome/free-solid-svg-icons';
+
 import { Region } from 'src/app/interfaces/countries.interface';
+
 
 @Component({
   selector: 'cnt-filter-form',
@@ -14,6 +18,13 @@ export class FilterFormComponent implements OnInit, OnDestroy {
   filterForm: FormGroup;
 
   private sub: Subscription;
+
+  globalIcon = faGlobe;
+  africaIcon = faGlobeAfrica;
+  americasIcon = faGlobeAmericas;
+  asiaIcon = faGlobeAsia;
+  europeIcon = faGlobeEurope;
+  oceaniaIcon = faKiwiBird;
 
   @Output() submitted: EventEmitter<{ region: Region }> = new EventEmitter();
 

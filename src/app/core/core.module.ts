@@ -10,8 +10,7 @@ import { FilterFormComponent } from './filter-form/filter-form.component';
   declarations: [SidebarComponent, SortFormComponent, FilterFormComponent],
   imports: [
     CommonModule,
-    SharedModule,
-    ReactiveFormsModule
+    SharedModule
   ],
   exports: [SidebarComponent, SortFormComponent, FilterFormComponent]
 })

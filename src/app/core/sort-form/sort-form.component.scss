@@ -1,4 +1,51 @@
-.action-row {
+.sorting-form {
+  min-height: 100%;
   display: flex;
-  justify-content: space-around;
+  flex-flow: column;
+
+  .sort-row {
+    display: flex;
+    flex-flow: nowrap;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+    flex: 1 1 auto;
+  }
+
+  .half {
+    flex: 0 0 45%;
+  }
+
+  .sort-label {
+    height: 60px;
+    width: 85%;
+    margin: 0 auto;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    background: #fefefe;
+    border: 1px solid #aaa;
+
+    .ng-fa-icon {
+      flex: 1 0 100%;
+      font-size: 1.2em;
+      text-align: center;
+      margin-bottom: 4px;
+    }
+
+  }
+
+}
+
+.action-row {
+  flex: 3 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+
+  .apply-sort {
+    width: 100%;
+  }
 }

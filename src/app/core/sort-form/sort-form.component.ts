@@ -2,6 +2,8 @@ import { Component, OnInit, Output, EventEmitter, Input, ChangeDetectionStrategy
 import { Observable, Subscription } from 'rxjs';
 import { FormGroup, FormBuilder } from '@angular/forms';
 
+import { faFont, faUsers, faArrowDown, faArrowUp } from '@fortawesome/free-solid-svg-icons';
+
 import { CountriesService } from 'src/app/services/countries.service';
 import { Sorting, Orders, SortCriteria } from 'src/app/interfaces/countries.interface';
 
@@ -14,6 +16,11 @@ import { Sorting, Orders, SortCriteria } from 'src/app/interfaces/countries.inte
 export class SortFormComponent implements OnInit, OnDestroy {
 
   sortingForm: FormGroup;
+
+  populIcon = faUsers;
+  charIcon = faFont;
+  ascIcon = faArrowUp;
+  descIcon = faArrowDown;
 
   private sub: Subscription;
 
@@ -34,10 +41,6 @@ export class SortFormComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     !!this.sub && this.sub.unsubscribe();
-  }
-
-  onResetForm(): void {
-    this.sortingForm.patchValue({ type: 'name', order: 'ASC' });
   }
 
   onSubmit(): void {

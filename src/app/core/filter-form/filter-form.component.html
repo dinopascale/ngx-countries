@@ -1,30 +1,52 @@
-<form [formGroup]="filterForm" (ngSubmit)="onSubmit()">
-  <div>
-    <label for="global">Global </label>
-    <input type="radio" id="global" formControlName="region" value="Global">
+<form [formGroup]="filterForm" (ngSubmit)="onSubmit()" class="filter-form">
+  <div class="filter-row">
+    <div class="radio-graphic-button third">
+      <input type="radio" id="global" formControlName="region" value="Global">
+      <label class="filter-label" for="global">
+        <fa-icon [icon]="globalIcon"></fa-icon>
+        Global
+      </label>
+    </div>
+    <div class="radio-graphic-button third">
+      <input type="radio" id="europe" formControlName="region" value="Europe">
+      <label class="filter-label" for="europe">
+        <fa-icon [icon]="europeIcon"></fa-icon>
+        Europe
+      </label>
+    </div>
+    <div class="radio-graphic-button third">
+      <input type="radio" id="asia" formControlName="region" value="Asia">
+      <label class="filter-label" for="asia">
+        <fa-icon [icon]="asiaIcon"></fa-icon>
+        Asia
+      </label>
+    </div>
   </div>
-  <div>
-    <label for="europe">Europe</label>
-    <input type="radio" id="europe" formControlName="region" value="Europe">
-  </div>
-  <div>
-    <label for="asia">Asia</label>
-    <input type="radio" id="asia" formControlName="region" value="Asia">
-  </div>
-  <div>
-    <label for="africa">Africa</label>
-    <input type="radio" id="africa" formControlName="region" value="Africa">
-  </div>
-  <div>
-    <label for="americas">Americas</label>
-    <input type="radio" id="americas" formControlName="region" value="Americas">
-  </div>
-  <div>
-    <label for="oceania">Oceania</label>
-    <input type="radio" id="oceania" formControlName="region" value="Oceania">
+  <div class="filter-row">
+    <div class="radio-graphic-button third">
+      <input type="radio" id="africa" formControlName="region" value="Africa">
+      <label class="filter-label" for="africa">
+        <fa-icon [icon]="africaIcon"></fa-icon>
+        Africa
+      </label>
+    </div>
+    <div class="radio-graphic-button third">
+      <input type="radio" id="americas" formControlName="region" value="Americas">
+      <label class="filter-label" for="americas">
+        <fa-icon [icon]="americasIcon"></fa-icon>
+        Americas
+      </label>
+    </div>
+    <div class="radio-graphic-button third">
+      <input type="radio" id="oceania" formControlName="region" value="Oceania">
+      <label class="filter-label" for="oceania">
+        <fa-icon [icon]="oceaniaIcon"></fa-icon>
+        Oceania
+      </label>
+    </div>
   </div>
 
   <div class="action-row">
-    <button type="submit">Apply</button>
+    <button type="submit" class="primary-btn apply-filter">Filter</button>
   </div>
 </form>

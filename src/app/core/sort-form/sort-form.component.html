@@ -1,26 +1,40 @@
-<form [formGroup]="sortingForm" (ngSubmit)="onSubmit()">
+<form [formGroup]="sortingForm" (ngSubmit)="onSubmit()" class="sorting-form">
   <div>
   </div>
-  <div>
-    <label for="type-name">Name</label>
-    <input type="radio" id="type-name" formControlName="type" value="name">
+  <div class="sort-row">
+    <div class="radio-graphic-button half">
+      <input type="radio" id="type-name" formControlName="type" value="name">
+      <label class="sort-label" for="type-name">
+        <fa-icon [icon]="charIcon"></fa-icon>
+        Name
+      </label>
+    </div>
+    <div class="radio-graphic-button half">
+      <input type="radio" id="type-population" formControlName="type" value="population">
+      <label class="sort-label" for="type-population">
+        <fa-icon [icon]="populIcon"></fa-icon>
+        Population
+      </label>
+    </div>
   </div>
-  <div>
-    <label for="type-population">Population</label>
-    <input type="radio" id="type-population" formControlName="type" value="population">
-  </div>
-  <br>
-  <div>
-    <label for="order-asc">Asc</label>
-    <input type="radio" id="order-asc" formControlName="order" value="ASC">
-  </div>
-  <div>
-    <label for="order-desc">Desc</label>
-    <input type="radio" id="order-desc" formControlName="order" value="DESC">
+  <div class="sort-row">
+    <div class="radio-graphic-button half">
+      <input type="radio" id="order-asc" formControlName="order" value="ASC">
+      <label class="sort-label" for="order-asc">
+        <fa-icon [icon]="ascIcon"></fa-icon>
+        Asc
+      </label>
+    </div>
+    <div class="radio-graphic-button half">
+      <input type="radio" id="order-desc" formControlName="order" value="DESC">
+      <label class="sort-label" for="order-desc">
+        <fa-icon [icon]="descIcon"></fa-icon>
+        Desc
+      </label>
+    </div>
   </div>
 
   <div class="action-row">
-    <button type="button" (click)="onResetForm()">Reset</button>
-    <button type="submit">Apply</button>
+    <button type="submit" class="primary-btn apply-sort">Sort</button>
   </div>
 </form>
