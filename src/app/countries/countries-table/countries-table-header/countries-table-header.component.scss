@@ -3,12 +3,21 @@
     align-items: center;
     padding: 8px 0;
     justify-content: space-between;
+    max-width: 1024px;
+    margin: auto;
 
     .header-cell {
         font-weight: 700;
 
         &.flag { flex: 0 0 50px; }
-        &.name { flex: 1 0 40%; }
-        &.population { flex: 0 0 20%; }
+        &.name { 
+            flex: 1 0 20%;
+            @media screen and (min-width: 1024px) {
+                flex: 0 1 20%; 
+            }
+        }
+        &.region { flex: 0 1 20%; }
+        &.capital { flex: 0 1 20%; }
+        &.population { flex: 0 0 20%; text-align: right; }
     }
 }

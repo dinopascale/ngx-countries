@@ -2,6 +2,7 @@
 @import url('https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap');
 @import './app/styles/colors';
 @import './app/styles/utilities';
+@import './app/styles/mediaquery';
 
 * {
   font-family: 'Poppins', ;
@@ -21,12 +22,6 @@ a {
       outline: none;
       border: none;
     }
-}
-
-.hidden-mobile {
-  @media (max-width: 486px) {
-    display: none;
-  }
 }
 
 .owl-stage{padding-left:0px !important;}

@@ -11,6 +11,12 @@ import { Country } from 'src/app/interfaces/countries.interface';
       <div class="cell name">
         <span>{{country.name}}</span>
       </div>
+      <div class="cell region no-mobile">
+        <span>{{country.region}}</span>
+      </div>
+      <div class="cell capital no-mobile">
+        <span>{{country.capital}}</span>
+      </div>
       <div class="cell population">
        <span>{{country.population | abbreviateNumber}}</span>
       </div>

@@ -11,11 +11,15 @@ import { Sorting, SortCriteria } from 'src/app/interfaces/countries.interface';
     <div class="country-table-header" *ngIf="sortingCriteria$ | async as sort">
       <div class="header-cell flag"></div>
       <div class="header-cell name">
-        <img class="icon-sort hidden-mobile" [src]="sort | sortIcon: 'name'" (click)="handleSortBy('name')">
         <span class="grey-dark-fg">Name</span>
       </div>
+      <div class="header-cell region no-mobile">
+        <span class="grey-dark-fg">Region</span>
+      </div>
+      <div class="header-cell capital no-mobile">
+        <span class="grey-dark-fg">Capital</span>
+      </div>
       <div class="header-cell population">
-        <img class="icon-sort hidden-mobile" [src]="sort | sortIcon: 'population'" (click)="handleSortBy('population')">
         <span class="grey-dark-fg">Population</span>
       </div>
     </div>

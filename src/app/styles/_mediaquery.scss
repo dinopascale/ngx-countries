@@ -1,0 +1,17 @@
+$mobile: 496px;
+$table-portrait: 768px;
+$tablet-landscape: 1024px;
+$large: 1440px;
+
+.no-desktop {
+    @media screen and (min-width: $tablet-landscape) {
+      display: none !important;
+    }
+}
+
+.no-mobile {
+    display: none;
+    @media screen and (min-width: $tablet-landscape) {
+        display: inherit !important;
+    }  
+}

@@ -1,4 +1,5 @@
 @import '../../../styles/colors';
+@import '../../../styles/mediaquery';
 
 .country-row {
     display: flex;
@@ -21,11 +22,22 @@
       outline: none;
     }
 
+    &:hover {
+      background-color: $grey-light;
+    }
+
     .cell {
 
       &.flag { flex: 0 0 50px; }
-      &.name { flex: 1 0 60%; }
+      &.name {
+        flex: 1 0 20%;
+        @media screen and (min-width: $tablet-landscape) {
+            flex: 0 1 20%; 
+        }
+      }
       &.population { flex: 0 0 20%; text-align: right; }
+      &.region { flex: 0 0 20%; }
+      &.capital { flex: 0 0 20%; }
 
       .flag {
         width: 30px;
