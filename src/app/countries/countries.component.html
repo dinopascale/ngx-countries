@@ -1,5 +1,5 @@
 <div class="content">
-  <h1 class="region primary-fg">Europe</h1>
+  <h1 class="region primary-fg">{{filteringCriteria$ | async}}</h1>
 
   <ng-container *ngIf="(loading$ | async)">
     Loading...
@@ -10,7 +10,7 @@
   </ng-container>
 
   <ng-container *ngIf="!(loading$ | async) && !(error$ | async)">
-    <cnt-countries-table [countries]="countries$ | async"></cnt-countries-table>
+    <cnt-countries-table [class.test]="showHideBar" [countries]="countries$ | async"></cnt-countries-table>
   </ng-container>
 
 

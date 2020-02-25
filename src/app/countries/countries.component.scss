@@ -1,6 +1,10 @@
 .content {
   padding: .8em 1.2em 80px 1.2em;
 
+  .test {
+    pointer-events: none;
+  }
+
   .region {
     margin: .4em 0 .8em 0;
   }

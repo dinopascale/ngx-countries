@@ -15,7 +15,7 @@ export class CountriesService {
   private countriesFailed$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   private countriesLoading$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   private sortingCriteria$: BehaviorSubject<SortCriteria> = new BehaviorSubject<SortCriteria>({ type: 'name', order: 'ASC' });
-  private filterCriteria$: BehaviorSubject<Region> = new BehaviorSubject<Region>('all');
+  private filterCriteria$: BehaviorSubject<Region> = new BehaviorSubject<Region>('Global');
 
   constructor(private countryApi: CountriesApiService) { }
 
@@ -76,6 +76,6 @@ export class CountriesService {
   }
 
   resetFilter(): void {
-    this.filterCriteria$.next('all');
+    this.filterCriteria$.next('Global');
   }
 }

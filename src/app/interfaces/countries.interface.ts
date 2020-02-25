@@ -58,5 +58,5 @@ export interface Country {
 export type Borders = Pick<Country, 'name' | 'alpha3Code' | 'flag'>;
 export type Sorting = 'name' | 'population';
 export type Orders = 'ASC' | 'DESC' | 'NONE';
-export type Region = 'Africa' | 'Americas' | 'Asia' | 'Europe' | 'Oceania' | 'all';
+export type Region = 'Africa' | 'Americas' | 'Asia' | 'Europe' | 'Oceania' | 'Global';
 export interface SortCriteria { type: Sorting; order: Orders; }

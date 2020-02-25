@@ -11,7 +11,7 @@ import { ToolbarAction } from 'src/app/interfaces/toolbar.interface';
           [ngClass]="action.label.toLowerCase() === 'home' ? 'primary-fg' : 'grey-dark-fg'"
         >
           <fa-icon class="icon" [icon]="action.icon"></fa-icon>
-          <span class="label">{{action.label}}</span>
+          <span class="label" [class.active]="action.active">{{action.label}}</span>
         </div>
       </ng-container>
     </div>

@@ -10,7 +10,7 @@ export class FilterCountriesPipe implements PipeTransform {
 
     if (!prop || !value) { return countries; }
 
-    if (value === 'all') {
+    if (value === 'Global') {
       return countries;
     }
 

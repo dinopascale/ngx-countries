@@ -1,6 +1,8 @@
+@import '../../styles/colors';
+
 .toolbar {
   position: fixed;
-  bottom: 24px;
+  bottom: 44px;
   left: 50%;
   width: 80%;
   transform: translateX(-50%);
@@ -31,6 +33,20 @@
       font-size: .8em;
       text-transform: uppercase;
       font-weight: 700;
+
+      &.active {
+        position: relative;
+        &:before {
+          content: '';
+          position: absolute;
+          top: 0;
+          right: -7px;
+          width: 6px;
+          height: 6px;
+          border-radius: 3px;
+          background-color: $solvians
+        }
+      }
     }
   }
 }
