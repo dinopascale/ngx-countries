@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, ChangeDetectionStrategy } from '@angular/core';
-import { Country } from 'src/interfaces/countries.interface';
+import { Country } from 'src/app/interfaces/countries.interface';
 
 @Component({
   selector: 'cnt-country-row',

@@ -1,0 +1,30 @@
+@import '../../styles/colors';
+
+.sidebar {
+  position: fixed;
+  background: #fafafa;
+  z-index: 9999;
+  transition: transform .3s ease-in-out;
+  overflow: hidden;
+
+  &.bottom {
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    min-height: 35vh;
+    border-radius: 24px 24px 0 0;
+    padding: 1em;
+    transform: translateY(0);
+  }
+
+  &.bottom.out-of-view {
+    transform: translateY(500px)
+  }
+
+  .close-row {
+    text-align: right;
+    color: $grey-dark;
+    font-size: 18px;
+  }
+
+}

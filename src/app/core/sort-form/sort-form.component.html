@@ -1,0 +1,26 @@
+<form [formGroup]="sortingForm" (ngSubmit)="onSubmit()">
+  <div>
+  </div>
+  <div>
+    <label for="type-name">Name</label>
+    <input type="radio" id="type-name" formControlName="type" value="name">
+  </div>
+  <div>
+    <label for="type-population">Population</label>
+    <input type="radio" id="type-population" formControlName="type" value="population">
+  </div>
+  <br>
+  <div>
+    <label for="order-asc">Asc</label>
+    <input type="radio" id="order-asc" formControlName="order" value="ASC">
+  </div>
+  <div>
+    <label for="order-desc">Desc</label>
+    <input type="radio" id="order-desc" formControlName="order" value="DESC">
+  </div>
+
+  <div class="action-row">
+    <button type="button" (click)="onResetForm()">Reset</button>
+    <button type="submit">Apply</button>
+  </div>
+</form>

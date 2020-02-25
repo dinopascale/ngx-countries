@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { RouterModule } from '@angular/router';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { CoreModule } from '../core/core.module';
 
 import { CountriesComponent } from './countries.component';
 import { CountriesTableComponent } from './countries-table/countries-table.component';
@@ -24,7 +25,8 @@ const components = [
     CommonModule,
     ScrollingModule,
     RouterModule,
-    SharedModule
+    SharedModule,
+    CoreModule
   ],
   exports: [
     CountriesComponent

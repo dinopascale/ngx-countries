@@ -2,8 +2,8 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
-import { CountriesService } from 'src/services/countries.service';
-import { Sorting, SortCriteria } from 'src/interfaces/countries.interface';
+import { CountriesService } from 'src/app/services/countries.service';
+import { Sorting, SortCriteria } from 'src/app/interfaces/countries.interface';
 
 @Component({
   selector: 'cnt-countries-table-header',

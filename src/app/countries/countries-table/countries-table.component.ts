@@ -1,8 +1,8 @@
 import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { Country, SortCriteria } from 'src/interfaces/countries.interface';
-import { CountriesService } from 'src/services/countries.service';
+import { Country, SortCriteria } from 'src/app/interfaces/countries.interface';
+import { CountriesService } from 'src/app/services/countries.service';
 
 @Component({
   selector: 'cnt-countries-table',
@@ -14,14 +14,16 @@ export class CountriesTableComponent implements OnInit {
   @Input() countries: Partial<Country>[];
 
   sortingCriteria$: Observable<SortCriteria>;
+  filteringCriteria$: Observable<string>;
 
-  constructor(private countriesService: CountriesService) {}
+  constructor(private countriesService: CountriesService) { }
 
   ngOnInit() {
     this.sortingCriteria$ = this.countriesService.sortingCriteria;
+    this.filteringCriteria$ = this.countriesService.filterCriteria;
   }
 
   trackBy(country: Partial<Country>) {
-    return country.name;
+    return country.alpha3Code;
   }
 }

@@ -4,7 +4,7 @@ import { Observable, BehaviorSubject, Subscription, of } from 'rxjs';
 import { map, tap, switchMap, scan } from 'rxjs/operators';
 
 import { CountriesApiService, ApiCallGetSingle } from './countries-api.service';
-import { Country, Borders } from 'src/interfaces/countries.interface';
+import { Country, Borders } from 'src/app/interfaces/countries.interface';
 
 @Injectable({
   providedIn: 'any'

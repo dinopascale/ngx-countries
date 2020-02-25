@@ -1,0 +1,6 @@
+<div [class]="'sidebar ' + position" [class.out-of-view]="outOfView">
+  <div class="close-row">
+    <fa-icon (click)="closing.emit()" [icon]="closeIcon"></fa-icon>
+  </div>
+  <ng-template *ngTemplateOutlet="template"></ng-template>
+</div>

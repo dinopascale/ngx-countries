@@ -2,7 +2,7 @@
   <div class="navbar">
     <fa-icon [routerLink]="['/']" [icon]="backIcon"></fa-icon>
   </div>
-  <div class="map" [ngStyle]="{backgroundImage: 'url(' + mapUrl + ')'}"></div>
+  <img [src]="mapUrl" class="map">
 </div>
 
 <div class="content">

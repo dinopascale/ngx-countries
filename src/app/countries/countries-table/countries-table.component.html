@@ -1,6 +1,6 @@
 <cnt-countries-table-header></cnt-countries-table-header>
 <div class="countries-table" itemSize="50">
   <cnt-country-row
-    *ngFor="let country of countries | filterCountries: {prop: 'region', value: 'Europe'} | sortCountries: (sortingCriteria$ | async) ;trackBy: trackBy"
+    *ngFor="let country of countries | filterCountries: {prop: 'region', value: (filteringCriteria$ | async)} | sortCountries: (sortingCriteria$ | async) ;trackBy: trackBy"
     [country]="country"></cnt-country-row>
 </div>

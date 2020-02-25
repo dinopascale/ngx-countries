@@ -14,6 +14,9 @@ export class GMapStatisService {
   constructor() { }
 
   getMapUrl(center: string, country: string): string {
-    return this.gmapStaticUrl + `&center=${center}` + `&visible=${encodeURI(country)}` + this.sizeAndScale + this.key + this.styleMap;
+    return this.gmapStaticUrl +
+      `&center=${center}` +
+      `&visible=${country.replace(/ /g, '%20')}` +
+      `&markers=size:small|${center}` + this.sizeAndScale + this.key + this.styleMap;
   }
 }

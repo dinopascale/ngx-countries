@@ -1,11 +1,13 @@
-import { Component, OnInit, ChangeDetectionStrategy, Optional, OnDestroy } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, Optional, OnDestroy, TemplateRef, ViewChild } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
-import { Country } from 'src/interfaces/countries.interface';
-import { CountriesService } from 'src/services/countries.service';
+import { Country, Sorting, Orders, Region } from 'src/app/interfaces/countries.interface';
+import { CountriesService } from 'src/app/services/countries.service';
 import { shareReplay } from 'rxjs/operators';
 
-import { ToolbarAction } from 'src/interfaces/toolbar.interface';
+import { ToolbarAction } from 'src/app/interfaces/toolbar.interface';
 import { faHome, faFilter, faSort } from '@fortawesome/free-solid-svg-icons';
+import { SortFormComponent } from '../core/sort-form/sort-form.component';
+import { FilterFormComponent } from '../core/filter-form/filter-form.component';
 
 @Component({
   selector: 'cnt-countries',
@@ -38,6 +40,13 @@ export class CountriesComponent implements OnInit, OnDestroy {
     }
   ];
 
+  @ViewChild('sort', { read: TemplateRef }) sortTemplateRef: TemplateRef<SortFormComponent>;
+  @ViewChild('filter', { read: TemplateRef }) filterTemplateRef: TemplateRef<FilterFormComponent>;
+
+
+  showHideBar = false;
+  templateToShowInSidebar: TemplateRef<SortFormComponent | FilterFormComponent>;
+
   constructor(private countriesService: CountriesService) { }
 
   ngOnInit(): void {
@@ -52,8 +61,28 @@ export class CountriesComponent implements OnInit, OnDestroy {
     !!this.sub && this.sub.unsubscribe();
   }
 
-  handleToolbarActions(eventSign: string): void {
+  handleToolbarActions(eventSign: 'home' | 'filter' | 'sort'): void {
+    if (eventSign === 'home') {
 
+    } else {
+      console.log(eventSign);
+      this.showHideBar = true;
+      this.templateToShowInSidebar = eventSign === 'filter' ? this.filterTemplateRef : this.sortTemplateRef;
+    }
+  }
+
+  closeSidebar(): void {
+    this.showHideBar = false;
+  }
+
+  onSortChosen({ type, order }: { type: Sorting, order: Orders }) {
+    this.showHideBar = false;
+    this.countriesService.setSort(type, order);
+  }
+
+  onFilterChosen({ region }: { region: Region }) {
+    this.showHideBar = false;
+    this.countriesService.setFilter(region);
   }
 
 }

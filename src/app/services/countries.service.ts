@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, throwError, Subscription } from 'rxjs'
-import { Country, SortCriteria, Sorting, Orders } from 'src/interfaces/countries.interface';
+import { Country, SortCriteria, Sorting, Orders, Region } from 'src/app/interfaces/countries.interface';
 import { CountriesApiService } from './countries-api.service';
 import { shareReplay } from 'rxjs/operators';
 
@@ -14,17 +14,20 @@ export class CountriesService {
   private countries$: BehaviorSubject<Partial<Country>[]> = new BehaviorSubject<Country[]>([]);
   private countriesFailed$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   private countriesLoading$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
-  private sortingCriteria$: BehaviorSubject<SortCriteria> = new BehaviorSubject<SortCriteria>({ type: 'none', order: 'NONE' });
+  private sortingCriteria$: BehaviorSubject<SortCriteria> = new BehaviorSubject<SortCriteria>({ type: 'name', order: 'ASC' });
+  private filterCriteria$: BehaviorSubject<Region> = new BehaviorSubject<Region>('all');
 
   constructor(private countryApi: CountriesApiService) { }
 
-  get countries(): Observable<Partial<Country>[]> { return this.countries$.asObservable() }
+  get countries(): Observable<Partial<Country>[]> { return this.countries$.asObservable(); }
 
-  get countriesFailed(): Observable<boolean> { return this.countriesFailed$.asObservable() }
+  get countriesFailed(): Observable<boolean> { return this.countriesFailed$.asObservable(); }
 
-  get countriesLoading(): Observable<boolean> { return this.countriesLoading$.asObservable() }
+  get countriesLoading(): Observable<boolean> { return this.countriesLoading$.asObservable(); }
 
-  get sortingCriteria(): Observable<SortCriteria> { return this.sortingCriteria$.asObservable().pipe(shareReplay(1)) }
+  get sortingCriteria(): Observable<SortCriteria> { return this.sortingCriteria$.asObservable().pipe(shareReplay(1)); }
+
+  get filterCriteria(): Observable<Region> { return this.filterCriteria$.asObservable().pipe(shareReplay(1)); }
 
   fetchCountries<D extends keyof Country>(filters?: D[]): Subscription {
 
@@ -44,8 +47,8 @@ export class CountriesService {
         },
         error => {
           this.countriesLoading$.next(false);
-          this.countries$.next([])
-          this.countriesFailed$.next(true)
+          this.countries$.next([]);
+          this.countriesFailed$.next(true);
         }
       )
   }
@@ -58,10 +61,21 @@ export class CountriesService {
     if (orderType) { newOrder = orderType; }
     else if (sortType !== oldType) { newOrder = 'ASC'; }
     else if (oldOrder === 'ASC') { newOrder = 'DESC'; }
-    else if (oldOrder === 'DESC') { newOrder = 'NONE'; }
     else { newOrder = 'ASC'; }
 
 
     this.sortingCriteria$.next({ type: sortType !== oldType ? sortType : oldType, order: newOrder });
+  }
+
+  resetSort(): void {
+    this.sortingCriteria$.next({ type: 'name', order: 'ASC' });
+  }
+
+  setFilter(region: Region): void {
+    this.filterCriteria$.next(region);
+  }
+
+  resetFilter(): void {
+    this.filterCriteria$.next('all');
   }
 }

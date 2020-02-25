@@ -1,0 +1,31 @@
+<form [formGroup]="filterForm" (ngSubmit)="onSubmit()">
+  <div>
+    <label for="all">All</label>
+    <input type="radio" id="all" formControlName="region" value="all">
+  </div>
+  <div>
+    <label for="europe">Europe</label>
+    <input type="radio" id="europe" formControlName="region" value="Europe">
+  </div>
+  <div>
+    <label for="asia">Asia</label>
+    <input type="radio" id="asia" formControlName="region" value="Asia">
+  </div>
+  <div>
+    <label for="africa">Africa</label>
+    <input type="radio" id="africa" formControlName="region" value="Africa">
+  </div>
+  <div>
+    <label for="americas">Americas</label>
+    <input type="radio" id="americas" formControlName="region" value="Americas">
+  </div>
+  <div>
+    <label for="oceania">Oceania</label>
+    <input type="radio" id="oceania" formControlName="region" value="Oceania">
+  </div>
+
+  <div class="action-row">
+    <!--<button type="button" (click)="onResetForm()">Reset</button>-->
+    <button type="submit">Apply</button>
+  </div>
+</form>

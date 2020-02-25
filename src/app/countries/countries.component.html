@@ -14,5 +14,16 @@
   </ng-container>
 
 
-  <cnt-mobile-toolbar [actions]="toolbarActions"></cnt-mobile-toolbar>
+  <cnt-mobile-toolbar [actions]="toolbarActions" (actionClicked)="handleToolbarActions($event)"></cnt-mobile-toolbar>
+  <cnt-sidebar (closing)="closeSidebar()" [outOfView]="!showHideBar" position="bottom"
+    [template]="templateToShowInSidebar">
+  </cnt-sidebar>
 </div>
+
+<ng-template #sort>
+  <cnt-sort-form (submitted)="onSortChosen($event)"></cnt-sort-form>
+</ng-template>
+
+<ng-template #filter>
+  <cnt-filter-form (submitted)="onFilterChosen($event)"></cnt-filter-form>
+</ng-template>

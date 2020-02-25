@@ -1,17 +1,17 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { CountryDetailsComponent } from './country-details.component';
-import { CountryDetailsService } from 'src/services/country-details.service';
+import { CountryDetailsService } from 'src/app/services/country-details.service';
 
 
 const routes: Routes = [
-    {
-        path: ':countryCode',
-        component: CountryDetailsComponent,
-        resolve: {
-          country: CountryDetailsService
-        }
+  {
+    path: ':countryCode',
+    component: CountryDetailsComponent,
+    resolve: {
+      country: CountryDetailsService
     }
+  }
 ];
 
 @NgModule({

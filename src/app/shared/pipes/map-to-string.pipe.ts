@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Country } from 'src/interfaces/countries.interface';
+import { Country } from 'src/app/interfaces/countries.interface';
 
 @Pipe({
   name: 'mapToString'

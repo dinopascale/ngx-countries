@@ -6,7 +6,7 @@ import { setClassMetadata } from '@angular/core/src/r3_symbols';
 })
 export class AbbreviateNumberPipe implements PipeTransform {
 
-  SI_SYMBOL = ['', 'k', 'M'];
+  SI_SYMBOL = ['', 'k', 'M', 'B'];
 
   transform(n: number): string {
     const tier = Math.log10(n) / 3 | 0;

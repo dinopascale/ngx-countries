@@ -1,4 +1,4 @@
-import { Country } from 'src/interfaces/countries.interface';
+import { Country } from 'src/app/interfaces/countries.interface';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CountryDetailComponent } from './country-detail.component';

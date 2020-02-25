@@ -6,8 +6,8 @@ import { tap, switchMap, takeUntil, filter } from 'rxjs/operators';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 
-import { Country, Borders } from 'src/interfaces/countries.interface';
-import { CountryDetailsService } from 'src/services/country-details.service';
+import { Country, Borders } from 'src/app/interfaces/countries.interface';
+import { CountryDetailsService } from 'src/app/services/country-details.service';
 
 
 @Component({
@@ -65,7 +65,7 @@ export class CountryDetailsComponent implements OnInit, OnDestroy {
       )
       .subscribe();
 
-    this.borders$ = this.countryDetails.borders.pipe(takeUntil(this._unsubscribe)).pipe(tap(c => console.log(c)));
+    this.borders$ = this.countryDetails.borders.pipe(takeUntil(this._unsubscribe));
 
   }
 
