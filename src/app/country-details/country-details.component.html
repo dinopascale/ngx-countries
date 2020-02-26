@@ -1,48 +1,57 @@
-<div class="map-container">
-  <div class="navbar">
-    <fa-icon [routerLink]="['/']" [icon]="backIcon"></fa-icon>
+<div class="country-details">
+  <div class="map-container">
+    <div class="navbar no-desktop">
+      <fa-icon [routerLink]="['/']" [icon]="backIcon"></fa-icon>
+    </div>
+    <img [src]="mapUrl" class="map">
   </div>
-  <img [src]="mapUrl" class="map">
-</div>
+  
+  <div class="content">
+  
+    <div class="go-back-row no-mobile">
+      <div [routerLink]="['/']">
+        <fa-icon [icon]="backIcon"></fa-icon>
+        Home
+      </div>
+    </div>
 
-<div class="content">
-
-  <small class="country-native-name grey-dark-fg">{{country.nativeName | uppercase}}</small>
-  <h1 class="country-name primary-fg">{{country.name}}</h1>
-
-  <div class="details-resume">
-    <cnt-country-detail [detailValue]="country.region" detailLabel="region">
-    </cnt-country-detail>
-
-    <cnt-country-detail [detailValue]="country.subregion" detailLabel="subregion">
-    </cnt-country-detail>
-
-    <cnt-country-detail [detailValue]="country.capital" detailLabel="capital">
-    </cnt-country-detail>
-
-    <cnt-country-detail [detailValue]="country.population | abbreviateNumber" detailLabel="population">
-    </cnt-country-detail>
-
-    <cnt-country-detail [detailValue]="(country.area | abbreviateNumber)" detailLabel="area (km²)">
-    </cnt-country-detail>
-
-    <cnt-country-detail [detailValue]="country.currencies | mapToString: 'name'" detailLabel="currencies">
-    </cnt-country-detail>
-
-    <cnt-country-detail [detailValue]="country.languages | mapToString: 'name'" detailLabel="languages">
-    </cnt-country-detail>
-
-    <cnt-country-detail [detailValue]="country.timezones | mapToString" detailLabel="timezones">
-    </cnt-country-detail>
-
+    <small class="country-native-name grey-dark-fg">{{country.nativeName | uppercase}}</small>
+    <h1 class="country-name primary-fg">{{country.name}}</h1>
+  
+    <div class="details-resume">
+      <cnt-country-detail [detailValue]="country.region" detailLabel="region">
+      </cnt-country-detail>
+  
+      <cnt-country-detail [detailValue]="country.subregion" detailLabel="subregion">
+      </cnt-country-detail>
+  
+      <cnt-country-detail [detailValue]="country.capital" detailLabel="capital">
+      </cnt-country-detail>
+  
+      <cnt-country-detail [detailValue]="country.population | abbreviateNumber" detailLabel="population">
+      </cnt-country-detail>
+  
+      <cnt-country-detail [detailValue]="(country.area | abbreviateNumber)" detailLabel="area (km²)">
+      </cnt-country-detail>
+  
+      <cnt-country-detail [detailValue]="country.currencies | mapToString: 'name'" detailLabel="currencies">
+      </cnt-country-detail>
+  
+      <cnt-country-detail [detailValue]="country.languages | mapToString: 'name'" detailLabel="languages">
+      </cnt-country-detail>
+  
+      <cnt-country-detail [detailValue]="country.timezones | mapToString" detailLabel="timezones">
+      </cnt-country-detail>
+  
+    </div>
+  
+    <ng-container *ngIf="(borders$ | async) as borders">
+      <h6 class="label primary-fg" *ngIf="borders.length > 0">BORDERS</h6>
+      <owl-carousel-o [options]="customOptions" *ngIf="borders.length > 0">
+        <ng-template carouselSlide *ngFor=" let border of borders" [id]="border.alpha3Code">
+          <cnt-country-border [border]="border"></cnt-country-border>
+        </ng-template>
+      </owl-carousel-o>
+    </ng-container>
   </div>
-
-  <ng-container *ngIf="(borders$ | async) as borders">
-    <h6 class="label primary-fg" *ngIf="borders.length > 0">BORDERS</h6>
-    <owl-carousel-o [options]="customOptions" *ngIf="borders.length > 0">
-      <ng-template carouselSlide *ngFor=" let border of borders" [id]="border.alpha3Code">
-        <cnt-country-border [border]="border"></cnt-country-border>
-      </ng-template>
-    </owl-carousel-o>
-  </ng-container>
 </div>
