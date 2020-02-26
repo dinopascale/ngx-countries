@@ -31,7 +31,7 @@
       <cnt-country-detail [detailValue]="country.population | abbreviateNumber" detailLabel="population">
       </cnt-country-detail>
 
-      <cnt-country-detail [detailValue]="(country.area | abbreviateNumber)" detailLabel="area (km²)">
+      <cnt-country-detail [detailValue]="country.area | abbreviateNumber" detailLabel="area (km²)">
       </cnt-country-detail>
 
       <cnt-country-detail [detailValue]="country.currencies | mapToString: 'name'" detailLabel="currencies">
