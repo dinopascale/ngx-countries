@@ -20,8 +20,6 @@ export class AbbreviateNumberPipe implements PipeTransform {
 
     const scaled = n / scale;
 
-    console.log(scaled.toFixed(1) + suffix, n);
-
     return scaled.toFixed(1) + suffix;
   }
 

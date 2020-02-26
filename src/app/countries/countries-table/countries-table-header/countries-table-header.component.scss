@@ -1,3 +1,5 @@
+@import '../../../styles/mediaquery';
+
 .country-table-header {
     display: flex;
     align-items: center;
@@ -36,6 +38,10 @@
           cursor: pointer;
           opacity: 0;
           transition: .2s ease-in-out;
+          display: none;
+          @media screen and (min-width: $tablet-landscape) {
+            display: inline !important;
+          }
         }
 
       .header-cell-label {

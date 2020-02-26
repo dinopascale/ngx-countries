@@ -15,7 +15,7 @@ import { Sorting, SortCriteria } from 'src/app/interfaces/countries.interface';
           <fa-icon
             [icon]="sort.order === 'ASC' || sort.type !== 'name' ? sortUp : sortDown"
             (click)="handleSortBy('name')"
-            class="sort-icon"
+            class="sort-icon no-mobile"
           >
           </fa-icon>
           <p class="header-cell-label">Name</p>
@@ -30,7 +30,7 @@ import { Sorting, SortCriteria } from 'src/app/interfaces/countries.interface';
       <div class="header-cell population" [class.active]="sort.type === 'population'">
         <span class="grey-dark-fg">
           <fa-icon
-            class="sort-icon"
+            class="sort-icon no-mobile"
             [icon]="sort.order === 'ASC' || sort.type !== 'population' ? sortUp : sortDown"
             (click)="handleSortBy('population')"
           >

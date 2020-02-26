@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
-import { Observable, BehaviorSubject, Subscription, of } from 'rxjs';
-import { map, tap, switchMap, scan } from 'rxjs/operators';
+import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
+import { Observable, BehaviorSubject, Subscription, of, EMPTY } from 'rxjs';
+import { map, tap, switchMap, scan, catchError } from 'rxjs/operators';
 
 import { CountriesApiService, ApiCallGetSingle } from './countries-api.service';
 import { Country, Borders } from 'src/app/interfaces/countries.interface';
@@ -13,10 +13,16 @@ export class CountryDetailsService implements Resolve<Country> {
 
   private borders$: BehaviorSubject<Borders[]> = new BehaviorSubject<Borders[]>(null);
 
-  constructor(private countriesApi: CountriesApiService) { }
+  constructor(private countriesApi: CountriesApiService, private router: Router) { }
 
-  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Country> {
-    return this.countriesApi.getCountryByCode({ param: `/${route.params.countryCode}` }) as Observable<Country>;
+  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Country | null> {
+    return this.countriesApi.getCountryByCode({ param: `/${route.params.countryCode}` })
+      .pipe(
+        catchError(err => {
+          this.router.navigate(['/']);
+          return EMPTY;
+        })
+      ) as Observable<Country>;
   }
 
   get borders(): Observable<Borders[]> {

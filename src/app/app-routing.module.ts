@@ -11,6 +11,10 @@ const routes: Routes = [
   {
     path: 'country',
     loadChildren: () => import('./country-details/country-details.module').then(m => m.CountryDetailsModule)
+  },
+  {
+    path: '**',
+    redirectTo: '/'
   }
 ];
 

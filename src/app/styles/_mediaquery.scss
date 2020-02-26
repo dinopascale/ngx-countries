@@ -10,8 +10,8 @@ $large: 1440px;
 }
 
 .no-mobile {
-    display: none;
+    display: none !important;
     @media screen and (min-width: $tablet-landscape) {
-        display: inherit !important;
+        display: flex !important;
     }
 }
