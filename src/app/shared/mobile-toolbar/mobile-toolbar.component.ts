@@ -22,7 +22,7 @@ import { ToolbarAction } from 'src/app/interfaces/toolbar.interface';
 export class MobileToolbarComponent implements OnInit {
 
   @Input() actions: ToolbarAction[];
-  @Output() actionClicked: EventEmitter<string> = new EventEmitter<string>();
+  @Output() actionClicked: EventEmitter<'home' | 'filter' | 'sort'> = new EventEmitter<'home' | 'filter' | 'sort'>();
 
   constructor() { }
 

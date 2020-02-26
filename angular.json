@@ -129,5 +129,8 @@
       }
     }
   },
-  "defaultProject": "ngx-countries"
+  "defaultProject": "ngx-countries",
+  "cli": {
+    "analytics": false
+  }
 }

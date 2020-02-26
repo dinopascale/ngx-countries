@@ -9,15 +9,38 @@
     .header-cell {
         font-weight: 700;
 
+        &.active {
+          .sort-icon {
+            opacity: 1;
+          }
+        }
+
+        &:not(.active):hover {
+          .sort-icon {
+            opacity: 1;
+          }
+        }
+
         &.flag { flex: 0 0 50px; }
-        &.name { 
+        &.name {
             flex: 1 0 20%;
             @media screen and (min-width: 1024px) {
-                flex: 0 1 20%; 
+                flex: 0 1 20%;
             }
         }
         &.region { flex: 0 1 20%; }
         &.capital { flex: 0 1 20%; }
         &.population { flex: 0 0 20%; text-align: right; }
+
+        .sort-icon {
+          cursor: pointer;
+          opacity: 0;
+          transition: .2s ease-in-out;
+        }
+
+      .header-cell-label {
+        margin: 0 0 0 4px;
+        display: inline;
+      }
     }
 }

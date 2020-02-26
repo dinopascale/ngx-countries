@@ -1,7 +1,7 @@
 import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { Country, SortCriteria } from 'src/app/interfaces/countries.interface';
+import { Country, Region, SortCriteria } from 'src/app/interfaces/countries.interface';
 import { CountriesService } from 'src/app/services/countries.service';
 
 @Component({
@@ -13,6 +13,8 @@ import { CountriesService } from 'src/app/services/countries.service';
 export class CountriesTableComponent implements OnInit {
   @Input() countries: Partial<Country>[];
 
+  regionsFilter: Region[] = ['Global', 'Europe', 'Asia', 'Americas', 'Oceania', 'Africa'];
+
   sortingCriteria$: Observable<SortCriteria>;
   filteringCriteria$: Observable<string>;
 
@@ -23,7 +25,11 @@ export class CountriesTableComponent implements OnInit {
     this.filteringCriteria$ = this.countriesService.filterCriteria;
   }
 
-  trackBy(country: Partial<Country>) {
-    return country.alpha3Code;
+  handleFilterChose(region: Region): void {
+    this.countriesService.setFilter(region);
+  }
+
+  trackBy(country) {
+    return country;
   }
 }

@@ -1,5 +1,19 @@
+<div class="region-row no-mobile">
+  <span>Filter by Region: </span>
+  <ul class="list-filters">
+    <li
+      class="filter-region"
+      *ngFor="let region of regionsFilter"
+      [class.active]="(filteringCriteria$ | async) === region"
+      (click)="handleFilterChose(region)"
+    >
+      {{region}}
+    </li>
+  </ul>
+</div>
+
 <cnt-countries-table-header></cnt-countries-table-header>
-<div class="countries-table" itemSize="50">
+<div class="countries-table">
   <cnt-country-row
     *ngFor="let country of countries | filterCountries: {prop: 'region', value: (filteringCriteria$ | async)} | sortCountries: (sortingCriteria$ | async) ;trackBy: trackBy"
     [country]="country"></cnt-country-row>
