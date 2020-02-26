@@ -1,0 +1,6 @@
+<div class="border-card" [routerLink]="['/country/' + border.alpha3Code]">
+  <span class="flag" [ngStyle]="{backgroundImage: 'url(' + border.flag + ')'}"></span>
+</div>
+<h4 class="name grey-dark-fg">
+  <a [routerLink]="['/country/' + border.alpha3Code]">{{border.name}}</a>
+</h4>

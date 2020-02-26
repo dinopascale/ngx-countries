@@ -1,5 +1,4 @@
-import { Component, OnInit, Input, ChangeDetectionStrategy } from '@angular/core';
-import { Country } from 'src/app/interfaces/countries.interface';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
   selector: 'cnt-country-detail',
@@ -7,7 +6,7 @@ import { Country } from 'src/app/interfaces/countries.interface';
   styleUrls: ['./country-detail.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CountryDetailComponent<K extends keyof Country> {
-  @Input() detailValue: Pick<Country, K>;
-  @Input() detailLabel: K;
+export class CountryDetailComponent {
+  @Input() detailValue: any;
+  @Input() detailLabel: string;
 }

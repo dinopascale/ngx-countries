@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { CountriesTableHeaderComponent } from './countries-table-header.component';
+import { HttpClientModule } from '@angular/common/http';
 
 describe('CountriesTableHeaderComponent', () => {
   let component: CountriesTableHeaderComponent;
@@ -8,7 +8,8 @@ describe('CountriesTableHeaderComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CountriesTableHeaderComponent ]
+      imports: [HttpClientModule],
+      declarations: [ CountriesTableHeaderComponent ],
     })
     .compileComponents();
   }));

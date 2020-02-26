@@ -1,15 +1,17 @@
-import { Country } from 'src/app/interfaces/countries.interface';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CountryDetailComponent } from './country-detail.component';
+import { HttpClientModule } from '@angular/common/http';
+import { RouterModule } from '@angular/router';
 
 describe('CountryDetailComponent', () => {
-  let component: CountryDetailComponent<keyof Country>;
-  let fixture: ComponentFixture<CountryDetailComponent<keyof Country>>;
+  let component: CountryDetailComponent;
+  let fixture: ComponentFixture<CountryDetailComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [CountryDetailComponent]
+      declarations: [CountryDetailComponent],
+      imports: [HttpClientModule, RouterModule.forRoot([])]
     })
       .compileComponents();
   }));

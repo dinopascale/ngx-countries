@@ -2,7 +2,7 @@ import { GMapStatisService } from './gmap-static/gmap-static.service';
 import { Component, OnInit, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable, Subject } from 'rxjs';
-import { tap, switchMap, takeUntil, filter } from 'rxjs/operators';
+import { tap, switchMap, takeUntil } from 'rxjs/operators';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 
@@ -50,9 +50,6 @@ export class CountryDetailsComponent implements OnInit, OnDestroy {
     },
   };
 
-
-  get mapUrl(): string { return this.gMapStatic.getMapUrl(this.country.latlng.join(','), this.country.name); }
-
   constructor(private route: ActivatedRoute, private countryDetails: CountryDetailsService, private gMapStatic: GMapStatisService) { }
 
   ngOnInit(): void {
@@ -72,6 +69,10 @@ export class CountryDetailsComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this._unsubscribe.next();
     this._unsubscribe.complete();
+  }
+
+  mapUrl(): string {
+    if (this.country) return this.gMapStatic.getMapUrl(this.country.latlng.join(','), this.country.name);
   }
 
 }

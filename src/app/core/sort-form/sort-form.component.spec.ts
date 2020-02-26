@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SortFormComponent } from './sort-form.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 describe('SortFormComponent', () => {
   let component: SortFormComponent;
@@ -8,7 +10,8 @@ describe('SortFormComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SortFormComponent ]
+      imports: [ReactiveFormsModule, HttpClientModule],
+      declarations: [SortFormComponent]
     })
     .compileComponents();
   }));
